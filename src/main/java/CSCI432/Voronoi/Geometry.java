@@ -1,7 +1,7 @@
 package CSCI432.Voronoi;
 
 /**
- * Created by thechucklingatom on 11/22/2016.
+ * Created by Robert Putnam on 11/22/2016.
  */
 public class Geometry {
 	private Bounds bounds;

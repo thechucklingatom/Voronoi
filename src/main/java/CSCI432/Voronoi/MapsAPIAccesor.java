@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by thechucklingatom on 11/20/2016.
+ * Created by Robert Putnam on 11/20/2016.
  */
 public class MapsAPIAccesor {
 	private final String API_KEY = "lol";
