@@ -7,6 +7,7 @@ import okhttp3.Response;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
@@ -27,9 +28,13 @@ public class MapsAPIAccesor {
 		Gson desirializer = new GsonBuilder().create();
 		String url = String.format("%s%s", MAP_ENDPOINT, locationToFind);
 		JsonObject jsonObject = getJsonObject(url, desirializer);
-
 		ArrayList<MapLocation> toReturn = new ArrayList<>();
-		toReturn.add(new MapLocation());
+
+		for(JsonElement element : jsonObject.get("results").getAsJsonArray()){
+			MapLocation toAdd = desirializer.fromJson(element, MapLocation.class);
+			toReturn.add(toAdd);
+		}
+
 		return toReturn;
 	}
 
