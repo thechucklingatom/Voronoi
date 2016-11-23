@@ -32,4 +32,5 @@ public class MapLocation {
 	public void setGeometry(Geometry geometry) {
 		this.geometry = geometry;
 	}
+
 }
