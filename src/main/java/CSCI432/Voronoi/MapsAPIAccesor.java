@@ -10,9 +10,14 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import java.awt.Image;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 /**
  * Created by thechucklingatom on 11/20/2016.
@@ -22,6 +27,7 @@ public class MapsAPIAccesor {
 	private final String API_KEY = "lol";
 	private final String MAP_ENDPOINT = "https://maps.googleapis.com/maps/api/geocode/json?address=";
 	private final String PLACES_ENDPOINT = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
+	private final String MAP_IMAGE_ENDPOINT = "https://maps.googleapis.com/maps/api/staticmap?";
 	private OkHttpClient CLIENT = new OkHttpClient();
 
 	/**
@@ -93,5 +99,18 @@ public class MapsAPIAccesor {
 		}
 
 		return toReturn;
+	}
+
+	public Image getMapImage(String city){
+		try {
+			return ImageIO.read(new URL(MAP_IMAGE_ENDPOINT
+					+ "center="
+					+ city.replaceAll(" ", "+")
+					+ "?zoom=15&size=1024x720"));
+		} catch (MalformedURLException ex){
+			return null;
+		} catch (IOException ex){
+			return null;
+		}
 	}
 }

@@ -33,4 +33,8 @@ public class MapLocation {
 		this.geometry = geometry;
 	}
 
+	@Override
+	public String toString(){
+		return formatted_address;
+	}
 }

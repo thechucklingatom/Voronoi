@@ -6,5 +6,9 @@ package CSCI432.Voronoi;
 public class Main {
 	public static void main(String[] args){
 		//TODO Enter into GUI
+
+		GUI gui = new GUI();
+
+		gui.setVisible(true);
 	}
 }
