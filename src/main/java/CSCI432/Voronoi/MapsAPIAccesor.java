@@ -106,7 +106,7 @@ public class MapsAPIAccesor {
 			return ImageIO.read(new URL(MAP_IMAGE_ENDPOINT
 					+ "center="
 					+ city.replaceAll(" ", "+")
-					+ "?zoom=15&size=1024x720&scale=2"));
+					+ "?zoom=15&size=1024x720&scale=1"));
 		} catch (MalformedURLException ex){
 			return null;
 		} catch (IOException ex){

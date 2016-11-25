@@ -86,7 +86,7 @@ public class GUI extends JFrame{
 							mapLocation.getFormatted_address()));
 			innerDrawPanel.add(mapImage, BorderLayout.CENTER);
 			//innerDrawPanel.paintComponents(getGraphics());
-			mapImage.paintComponent(getGraphics());
+			mapImage.paintComponent(innerDrawPanel.getGraphics());
 
 		});
 		cityPanel.add(searchButton, BorderLayout.EAST);
