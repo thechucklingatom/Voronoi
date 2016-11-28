@@ -101,12 +101,17 @@ public class MapsAPIAccesor {
 		return toReturn;
 	}
 
+	/**
+	 * Gets the map image based on a city that you are looking for.
+	 * @param city The city to find the map of.
+	 * @return The {@link Image} that was returned by the api.
+	 */
 	public Image getMapImage(String city){
 		try {
 			return ImageIO.read(new URL(MAP_IMAGE_ENDPOINT
 					+ "center="
 					+ city.replaceAll(" ", "+")
-					+ "&zoom=15&size=1024x720&scale=1"));
+					+ "&zoom=10&size=x&scale=1"));
 		} catch (MalformedURLException ex){
 			return null;
 		} catch (IOException ex){
