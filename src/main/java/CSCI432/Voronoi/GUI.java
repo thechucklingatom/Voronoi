@@ -26,6 +26,7 @@ public class GUI extends JFrame {
 	JPanel panel;
 	List<String> placeTypes;
 	ImagePanel imagePanel;
+	List<PlaceNormalized> normalizedPlaces;
 
 	public GUI() {
 		super();
@@ -49,7 +50,7 @@ public class GUI extends JFrame {
 	}
 
 	private void setButtonsAndText() {
-		JPanel innerDrawPanel = new JPanel();
+		VoronoiPanel innerDrawPanel = new VoronoiPanel();
 		JTextField cityTextBox = new JTextField();
 		cityTextBox.setText("What city are you looking for?");
 		cityTextBox.addMouseListener(new MouseAdapter() {
@@ -115,12 +116,29 @@ public class GUI extends JFrame {
 			imagePanel.updateImage(mapsAPIAccesor.getMapImageWithExtras(placesFound));
 			imagePanel.paintComponent(innerDrawPanel.getGraphics());
 
-			List<PlaceNormalized> normalizedPlaces = new ArrayList<>();
+			normalizedPlaces = new ArrayList<>();
+			double minLat = Double.MAX_VALUE, maxLat = Double.MIN_VALUE;
+			double minLng = Double.MAX_VALUE, maxLng = Double.MAX_VALUE;
 			for(PlacesLocation location : placesFound){
-				normalizedPlaces.add(new PlaceNormalized(location));
+				if(location.getGeometry().getLocation().getLat() < minLat){
+					minLat = location.getGeometry().getLocation().getLat();
+				}
+				if(location.getGeometry().getLocation().getLat() > maxLat){
+					maxLat = location.getGeometry().getLocation().getLat();
+				}
+				if(location.getGeometry().getLocation().getLng() < minLng){
+					minLng = location.getGeometry().getLocation().getLng();
+				}
+				if(location.getGeometry().getLocation().getLng() > maxLng){
+					maxLng = location.getGeometry().getLocation().getLng();
+				}
 			}
 
-			System.out.println(normalizedPlaces);
+			for(PlacesLocation location : placesFound){
+				normalizedPlaces.add(new PlaceNormalized(location, maxLat, maxLng, minLat, minLng));
+			}
+			innerDrawPanel.addPlaces(normalizedPlaces);
+
 		});
 
 		placesPanel.add(placesSearch, BorderLayout.EAST);
