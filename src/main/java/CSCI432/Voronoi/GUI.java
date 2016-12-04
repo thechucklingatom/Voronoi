@@ -151,6 +151,17 @@ public class GUI extends JFrame {
 		panel.add(innerDrawPanel, BorderLayout.CENTER);
 
 		JButton fortunesAlgorithm = new JButton("Run Fortune's Algorithm");
+		fortunesAlgorithm.addActionListener(e -> {
+			Voronoi voronoi = new Voronoi();
+			List<VPoint> points = new ArrayList<>();
+
+			for(PlaceNormalized places : normalizedPlaces){
+				points.add(new VPoint(places.getLng(), places.getLat()));
+			}
+
+			List<VEdge> edges = voronoi.getEdges(points, 500, 500);
+			System.out.println(edges);
+		});
 		panel.add(fortunesAlgorithm, BorderLayout.PAGE_END);
 	}
 

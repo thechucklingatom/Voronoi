@@ -2,6 +2,7 @@ package CSCI432.Voronoi;
 
 /**
  * Created by Robert Putnam on 11/20/2016.
+ * @author Mathew Gostnell, Robert Putnam
  */
 
 import java.util.Collections;
@@ -35,6 +36,9 @@ public class Voronoi {
             All the data structures are managed by this class
          */
         edges = null; // call getEdges() to get the generated diagram
+        queue = new ArrayList<>();
+        deleted = new ArrayList<>();
+        points = new ArrayList<>();
     } // end Voronoi();
 
     public List<VEdge> getEdges(List<VPoint> v, int w, int h) {

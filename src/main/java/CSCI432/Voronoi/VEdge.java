@@ -40,4 +40,12 @@ public class VEdge {
         System.out.println(this.toPrintString());
     }
 
+    @Override
+    public String toString(){
+        return "VEdge:\n\tstart:\t" + start.toPrintString() +
+                "\n\tend:\t" + end.toPrintString() +
+                "\n\tdirct:\t" + direction.toPrintString() +
+                "\n\tleft:\t" + left.toPrintString() +
+                "\n\tright:\t" + right.toPrintString();
+    }
 }

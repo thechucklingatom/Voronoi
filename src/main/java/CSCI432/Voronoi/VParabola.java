@@ -58,8 +58,8 @@ public class VParabola {
     static VParabola getLeftParent(VParabola p) {
         VParabola par = p.parent;
         VParabola pLast = p;
-        while (p.left() == pLast) {
-            if (p.parent == null) {
+        while (par.left() == pLast) {
+            if (par.parent == null) {
                 return null;
             }
             pLast = par;
@@ -72,7 +72,7 @@ public class VParabola {
         VParabola par = p.parent;
         VParabola pLast = p;
         while (par.right() == pLast) {
-            if (p.parent == null) {
+            if (par.parent == null) {
                 return null;
             }
             pLast = par;
