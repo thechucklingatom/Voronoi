@@ -22,10 +22,8 @@ public class VoronoiPanel extends JPanel{
 	protected void paintComponent(Graphics graphics){
 		super.paintComponent(graphics);
 		for(PlaceNormalized place : placesToDraw){
-			double x = place.getLat();
-			x = 500 * x;
-			double y = place.getLng();
-			y = 500 * y;
+			double x = place.getLatDraw();
+			double y = place.getLngDraw();
 			graphics.fillOval((int)x, (int)y, 10, 10);
 		}
 	}
