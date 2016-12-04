@@ -108,15 +108,19 @@ public class GUI extends JFrame {
 
 		JButton placesSearch = new JButton("Search");
 		placesSearch.addActionListener(e -> {
-			System.out.println(placeTypesBox.getSelectedIndex());
 			List<String> typesSelected = new ArrayList<>();
 			typesSelected.add(placeTypes.get(placeTypesBox.getSelectedIndex()));
 			placesFound = mapsAPIAccesor.getPlaces(cityFound, 500, typesSelected);
 
-			System.out.println(placesFound);
-
 			imagePanel.updateImage(mapsAPIAccesor.getMapImageWithExtras(placesFound));
 			imagePanel.paintComponent(innerDrawPanel.getGraphics());
+
+			List<PlaceNormalized> normalizedPlaces = new ArrayList<>();
+			for(PlacesLocation location : placesFound){
+				normalizedPlaces.add(new PlaceNormalized(location));
+			}
+
+			System.out.println(normalizedPlaces);
 		});
 
 		placesPanel.add(placesSearch, BorderLayout.EAST);
@@ -127,6 +131,9 @@ public class GUI extends JFrame {
 
 		innerDrawPanel.setLayout(new BorderLayout());
 		panel.add(innerDrawPanel, BorderLayout.CENTER);
+
+		JButton fortunesAlgorithm = new JButton("Run Fortune's Algorithm");
+		panel.add(fortunesAlgorithm, BorderLayout.PAGE_END);
 	}
 
 	private void insetPlacesTypes() {
