@@ -14,44 +14,92 @@ public class VParabola {
 
 
     public VParabola() {
-
+        site = null; // site = 0;
+        isLeaf = false;
+        cEvent = null; // cEvent = 0;
+        edge = null; // edge = 0;
+        parent = null; // parent = 0;
     }
 
     public VParabola(VPoint s) {
-        // @ToDo
+        site = s;
+        isLeaf = true;
+        cEvent = null;
+        edge = null;
+        parent = null;
+    }
+
+    public VParabola left(){
+        return this.left;
+    }
+
+    public VParabola right() {
+        return this.right;
     }
 
     public void setLeft(VParabola p) {
-        p.left = p;
+        left = p;
         p.parent = this;
     }
 
     public void setRight(VParabola p) {
-        p.right = p;
+        right = p;
         p.parent = this;
     }
 
-    public VParabola getLeft() {
-        return this.left;
+    public VParabola getLeft(VParabola p) {
+        return getLeftChild(getLeftParent(p));
     }
 
-    public VParabola getRight() {
-        return this.right;
+    public VParabola getRight(VParabola p) {
+        return getRightChild(getRightParent(p));
     }
 
     static VParabola getLeftParent(VParabola p) {
-
+        VParabola par = p.parent;
+        VParabola pLast = p;
+        while (p.left() == pLast) {
+            if (p.parent == null) {
+                return null;
+            }
+            pLast = par;
+            par = par.parent;
+        }
+        return par;
     }
 
-    static VParabola getRighParent(VParabola p) {
-
+    static VParabola getRightParent(VParabola p) {
+        VParabola par = p.parent;
+        VParabola pLast = p;
+        while (par.right() == pLast) {
+            if (p.parent == null) {
+                return null;
+            }
+            pLast = par;
+            par = par.parent;
+        }
+        return par;
     }
 
     static VParabola getLeftChild(VParabola p) {
-
+        if (p == null) { // if (!p) return 0;
+            return null;
+        }
+        VParabola par = p.left();
+        while (!par.isLeaf) {
+            par = par.right();
+        }
+        return par;
     }
 
     static VParabola getRightChild(VParabola p) {
-
+        if (p == null) {
+            return null;
+        }
+        VParabola par = p.right();
+        while (!par.isLeaf) {
+            par = par.left();
+        }
+        return par;
     }
 }

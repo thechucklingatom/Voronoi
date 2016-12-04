@@ -146,10 +146,10 @@ public class Voronoi {
 
         par.setRight(p2);
         par.setLeft(new VParabola());
-        par.getLeft().edge = e1; // par->Left()->edge = e1
+        par.left().edge = e1; // par->Left()->edge = e1
 
-        par.getLeft().setLeft(p0);
-        par.getLeft().setRight(p1);
+        par.left().setLeft(p0);
+        par.left().setRight(p1);
 
         checkCircle(p0);
         checkCircle(p2);
@@ -159,7 +159,7 @@ public class Voronoi {
         VParabola p1 = e.arch;
 
         VParabola x1 = VParabola.getLeftParent(p1);
-        VParabola xr = VParabola.getRighParent(p1);
+        VParabola xr = VParabola.getRightParent(p1);
 
         VParabola p0 = VParabola.getLeftChild(x1);
         VParabola p2 = VParabola.getRightChild(xr);
@@ -200,19 +200,19 @@ public class Voronoi {
         edges.add(higher.edge); // edges->push_back(higer->edge)
 
         VParabola gParent = p1.parent.parent;
-        if (p1.parent.getLeft().equals(p1)) {
-            if (gParent.getLeft().equals(p1.parent)) {
-                gParent.setLeft(p1.parent.getRight());
+        if (p1.parent.left().equals(p1)) {
+            if (gParent.left().equals(p1.parent)) {
+                gParent.setLeft(p1.parent.right());
             }
-            if (gParent.getRight().equals(p1.parent)) {
-                gParent.setRight(p1.parent.getRight());
+            if (gParent.right().equals(p1.parent)) {
+                gParent.setRight(p1.parent.right());
             }
         } else {
-            if (gParent.getLeft().equals(p1.parent)) {
-                gParent.setLeft(p1.parent.getLeft());
+            if (gParent.left().equals(p1.parent)) {
+                gParent.setLeft(p1.parent.left());
             }
-            if (gParent.getRight().equals(p1.parent)) {
-                gParent.setRight(p1.parent.getLeft());
+            if (gParent.right().equals(p1.parent)) {
+                gParent.setRight(p1.parent.left());
             }
         }
 
@@ -239,8 +239,8 @@ public class Voronoi {
         n.edge.end = end;
         points.add(end); // points.push_back(end);
 
-        finishEdge(n.getLeft());
-        finishEdge(n.getRight());
+        finishEdge(n.left());
+        finishEdge(n.right());
         // delete n;
     } // emd finishEdge(...);
 
@@ -286,9 +286,9 @@ public class Voronoi {
         while (!par.isLeaf) { // I walk the tree until you find a suitable sheet
             x = getXOfEdge(par, ly);
             if (x > xx) {
-                par = par.getLeft();
+                par = par.left();
             } else {
-                par = par.getRight();
+                par = par.right();
             }
         }
         return par;
@@ -305,7 +305,7 @@ public class Voronoi {
 
     private void checkCircle(VParabola b) {
         VParabola lp = VParabola.getLeftParent(b);
-        VParabola rp = VParabola.getRighParent(b);
+        VParabola rp = VParabola.getRightParent(b);
 
         VParabola a = VParabola.getLeftChild(lp);
         VParabola c = VParabola.getRightChild(rp);
