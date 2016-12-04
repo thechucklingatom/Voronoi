@@ -117,8 +117,8 @@ public class GUI extends JFrame {
 			imagePanel.paintComponent(innerDrawPanel.getGraphics());
 
 			normalizedPlaces = new ArrayList<>();
-			double minLat = Double.MAX_VALUE, maxLat = Double.MIN_VALUE;
-			double minLng = Double.MAX_VALUE, maxLng = Double.MAX_VALUE;
+			double minLat = Double.POSITIVE_INFINITY, maxLat = Double.NEGATIVE_INFINITY;
+			double minLng = Double.POSITIVE_INFINITY, maxLng = Double.NEGATIVE_INFINITY;
 			for(PlacesLocation location : placesFound){
 				if(location.getGeometry().getLocation().getLat() < minLat){
 					minLat = location.getGeometry().getLocation().getLat();
