@@ -6,12 +6,14 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import static java.lang.StrictMath.abs;
+
 /**
  * Created by thechucklingatom on 12/4/2016.
  * @author thechucklingatom
  */
 public class VoronoiPanel extends JPanel{
-	List<PlaceNormalized> placesToDraw;
+	List<PlacesLocation> placesToDraw;
 	List<VEdge> edges;
 	public VoronoiPanel(){
 		super();
@@ -23,19 +25,19 @@ public class VoronoiPanel extends JPanel{
 	@Override
 	protected void paintComponent(Graphics graphics){
 		super.paintComponent(graphics);
-		for(PlaceNormalized place : placesToDraw){
-			double x = place.getLatDraw();
-			double y = place.getLngDraw();
+		for(PlacesLocation place : placesToDraw){
+			double x = place.getGeometry().getLocation().getLat() * 2;
+			double y = abs(place.getGeometry().getLocation().getLng() * 2);
 			graphics.fillOval((int)x, (int)y, 10, 10);
 		}
 
 		for(VEdge edge : edges){
-			graphics.drawLine((int)edge.start.x, (int)edge.start.y, (int)edge.end.x, (int)edge.end.y);
+			graphics.drawLine((int)(edge.start.x * 500), (int)(edge.start.y * 500), (int)(edge.end.x * 500), (int)(edge.end.y * 500));
 		}
 
 	}
 
-	public void addPlaces(List<PlaceNormalized> placesToDraw){
+	public void addPlaces(List<PlacesLocation> placesToDraw){
 		this.placesToDraw = placesToDraw;
 		paintComponent(getGraphics());
 	}

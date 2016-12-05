@@ -51,6 +51,7 @@ public class GUI extends JFrame {
 
 	private void setButtonsAndText() {
 		VoronoiPanel innerDrawPanel = new VoronoiPanel();
+		VoronoiPanel voronoiPanel = new VoronoiPanel();
 		JTextField cityTextBox = new JTextField();
 		cityTextBox.setText("What city are you looking for?");
 		cityTextBox.addMouseListener(new MouseAdapter() {
@@ -137,7 +138,7 @@ public class GUI extends JFrame {
 			for(PlacesLocation location : placesFound){
 				normalizedPlaces.add(new PlaceNormalized(location, maxLat, maxLng, minLat, minLng));
 			}
-			innerDrawPanel.addPlaces(normalizedPlaces);
+			voronoiPanel.addPlaces(placesFound);
 
 		});
 
@@ -146,6 +147,10 @@ public class GUI extends JFrame {
 		searchGroup.add(placesPanel, BorderLayout.PAGE_END);
 
 		panel.add(searchGroup, BorderLayout.PAGE_START);
+
+		voronoiPanel.setPreferredSize(new Dimension(500, 500));
+
+		panel.add(voronoiPanel, BorderLayout.EAST);
 
 		innerDrawPanel.setLayout(new BorderLayout());
 		panel.add(innerDrawPanel, BorderLayout.CENTER);
@@ -159,8 +164,8 @@ public class GUI extends JFrame {
 				points.add(new VPoint(places.getLng(), places.getLat()));
 			}
 
-			List<VEdge> edges = voronoi.getEdges(points, 500, 500);
-			innerDrawPanel.addEdges(edges);
+			List<VEdge> edges = voronoi.getEdges(points, 1, 1);
+			voronoiPanel.addEdges(edges);
 			System.out.println(edges);
 		});
 		panel.add(fortunesAlgorithm, BorderLayout.PAGE_END);

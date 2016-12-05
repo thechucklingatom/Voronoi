@@ -30,8 +30,8 @@ public class PlaceNormalized {
 	private void normalize(double maxLat, double maxLng, double minLat, double minLng) {
 		lat = (lat - minLat) / (maxLat - minLat);
 		lng = (lng - minLng) / (maxLng - minLng);
-		latDraw = lat * 500;
-		lngDraw = -lng * 100 + 250;
+		latDraw = lat * 250;
+		lngDraw = lng * 250;
 	}
 
 	@Override
