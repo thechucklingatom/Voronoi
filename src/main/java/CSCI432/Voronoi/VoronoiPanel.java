@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import static java.lang.StrictMath.abs;
-
 /**
  * Created by thechucklingatom on 12/4/2016.
  * @author thechucklingatom
@@ -26,8 +24,8 @@ public class VoronoiPanel extends JPanel{
 	protected void paintComponent(Graphics graphics){
 		super.paintComponent(graphics);
 		for(PlacesLocation place : placesToDraw){
-			double x = place.getGeometry().getLocation().getLat() * 2;
-			double y = abs(place.getGeometry().getLocation().getLng() * 2);
+			double x = place.getDrawLat();
+			double y = place.getDrawLng();
 			graphics.fillOval((int)x, (int)y, 10, 10);
 		}
 

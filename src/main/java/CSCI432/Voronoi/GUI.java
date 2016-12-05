@@ -137,7 +137,9 @@ public class GUI extends JFrame {
 
 			for(PlacesLocation location : placesFound){
 				normalizedPlaces.add(new PlaceNormalized(location, maxLat, maxLng, minLat, minLng));
+				location.calculateDraw(minLat, maxLat, minLng, maxLng);
 			}
+
 			voronoiPanel.addPlaces(placesFound);
 
 		});
@@ -160,11 +162,11 @@ public class GUI extends JFrame {
 			Voronoi voronoi = new Voronoi();
 			List<VPoint> points = new ArrayList<>();
 
-			for(PlaceNormalized places : normalizedPlaces){
-				points.add(new VPoint(places.getLng(), places.getLat()));
+			for(PlacesLocation places : placesFound){
+				points.add(new VPoint(places.getDrawLat(), places.getDrawLng()));
 			}
 
-			List<VEdge> edges = voronoi.getEdges(points, 1, 1);
+			List<VEdge> edges = voronoi.getEdges(points, 500, 250);
 			voronoiPanel.addEdges(edges);
 			System.out.println(edges);
 		});
