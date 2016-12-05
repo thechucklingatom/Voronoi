@@ -255,23 +255,23 @@ public class Voronoi {
         VPoint p = left.site;
         VPoint r = right.site;
 
-        double dp = 2.0 * (p.y - y);
-        double a1 = 1.0 / dp;
-        double b1 = -2.0 * p.x / dp;
-        double c1 = y + dp / 4 + p.x * p.x / dp;
+        double dp = 2.f * (p.y - y);
+        double a1 = 1.f / dp;
+        double b1 = -2.f * p.x / dp;
+        double c1 = y + dp / 4.f + p.x * p.x / dp;
 
-        dp = 2.0 * (r.y - y);
-        double a2 = 1.0 / dp;
-        double b2 = -2.0 * r.x / dp;
-        double c2 = ly + dp / 4 + r.x * r.x / dp;
+        dp = 2.f * (r.y - y);
+        double a2 = 1.f / dp;
+        double b2 = -2.f * r.x / dp;
+        double c2 = ly + dp / 4.f + r.x * r.x / dp;
 
         double a = a1 - a2;
         double b = b1 - b2;
         double c = c1 - c2;
 
-        double disc = b * b - 4 * a * c;
-        double x1 = (-b + Math.sqrt(disc)) / (2 * a);
-        double x2 = (-b - Math.sqrt(disc)) / (2 * a);
+        double disc = b * b - 4.f * a * c;
+        double x1 = (-b + Math.sqrt(disc)) / (2.f * a);
+        double x2 = (-b - Math.sqrt(disc)) / (2.f * a);
 
         double ry;
         if (p.y < r.y) {
@@ -299,10 +299,10 @@ public class Voronoi {
     } // end getParabolaByX(...);
 
     private double getY(VPoint p, double x) {
-        double dp = 2 * (p.y - ly);
-        double a1 = 1 / dp;
-        double b1 = -2 * p.x / dp;
-        double c1 = ly + dp / 4 + p.x * p.x / dp;
+        double dp = 2.f * (p.y - ly);
+        double a1 = 1.f / dp;
+        double b1 = -2.f * p.x / dp;
+        double c1 = ly + dp / 4.f + p.x * p.x / dp;
 
         return (a1 * x * x + b1 * x + c1);
     } // end getY(...);

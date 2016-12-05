@@ -47,13 +47,15 @@ public class VParabola {
         p.parent = this;
     }
 
+    /*
     public VParabola getLeft(VParabola p) {
         return getLeftChild(getLeftParent(p));
     }
-
+    // UNUSED IN FORTUNE's ALGORITHM
     public VParabola getRight(VParabola p) {
         return getRightChild(getRightParent(p));
     }
+    */
 
     static VParabola getLeftParent(VParabola p) {
         VParabola par = p.parent;
