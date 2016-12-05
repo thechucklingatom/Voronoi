@@ -30,7 +30,7 @@ public class VoronoiPanel extends JPanel{
 		}
 
 		for(VEdge edge : edges){
-			graphics.drawLine((int)(edge.start.x * 500), (int)(edge.start.y * 500), (int)(edge.end.x * 500), (int)(edge.end.y * 500));
+			graphics.drawLine((int)(edge.start.x), (int)(edge.start.y), (int)(edge.end.x), (int)(edge.end.y));
 		}
 
 	}
