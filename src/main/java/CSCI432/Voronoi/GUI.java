@@ -160,6 +160,7 @@ public class GUI extends JFrame {
 			}
 
 			List<VEdge> edges = voronoi.getEdges(points, 500, 500);
+			innerDrawPanel.addEdges(edges);
 			System.out.println(edges);
 		});
 		panel.add(fortunesAlgorithm, BorderLayout.PAGE_END);
