@@ -166,7 +166,7 @@ public class GUI extends JFrame {
 				points.add(new VPoint(places.getDrawLat(), places.getDrawLng()));
 			}
 
-			List<VEdge> edges = voronoi.getEdges(points, 500, 250);
+			List<VEdge> edges = voronoi.getEdges(points, 500, 500);
 			voronoiPanel.addEdges(edges);
 			System.out.println(edges);
 		});

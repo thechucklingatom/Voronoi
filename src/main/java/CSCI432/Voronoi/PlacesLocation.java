@@ -36,7 +36,7 @@ public class PlacesLocation {
 
 	public void calculateDraw(double minLat, double maxLat, double minLng, double maxLng){
 		drawLat = (500) * (getGeometry().getLocation().getLat() - minLat) / (maxLat - minLat);
-		drawLng = (250) * (getGeometry().getLocation().getLng() - minLng) / (maxLng - minLng);
+		drawLng = (500) * (getGeometry().getLocation().getLng() - minLng) / (maxLng - minLng);
 
 		if(drawLat < 0){
 			drawLat =  -drawLat;
